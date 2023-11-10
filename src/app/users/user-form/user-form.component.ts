@@ -11,7 +11,6 @@ import { CommonService } from 'src/app/core/service/common.service';
 export class UserFormComponent implements OnInit {
   businessUnits: BusinessUnit[] = [];
   userForm: FormGroup;
-  currentDate: Date = new Date();
 
   constructor(
     private fb: FormBuilder,

@@ -10,8 +10,8 @@ import { CommonService } from 'src/app/core/service/common.service';
 })
 export class UserListComponent implements OnInit {
 
-  usersList: any[] = [];
   businessUnits: BusinessUnit[] = [];
+  usersList: any[] = [];
   isAscending: boolean = true;
   sortField: string = '';
 
@@ -46,7 +46,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  processUserDetails(users: User[]): any[] {
+  processUserDetails(users: User[]) {
     return users.map(user => {
       const businessUnit = this.businessUnits.find(unit => unit.id == user.businessUnit);
       return {
@@ -58,15 +58,6 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  calculateAge(dob: string): number {
-    const birthdate = new Date(dob);
-    const today = new Date();
-    const age = today.getFullYear() - birthdate.getFullYear();
-    const monthDiff = today.getMonth() - birthdate.getMonth();
-    
-    return monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate()) ? age - 1 : age;
-  }
-
   sort(field: string) {
     if (field === this.sortField) {
       this.isAscending = !this.isAscending;
@@ -76,9 +67,10 @@ export class UserListComponent implements OnInit {
     }
   
     const sortOrder = this.isAscending ? 1 : -1;
-    this.usersList.sort((a: any, b: any) => {
+    this.usersList.sort((a, b) => {
       return sortOrder * a[field].localeCompare(b[field], undefined, { sensitivity: 'base' });
-    });  }
+    });  
+  }
 
   sortIcon(field: string): string {
     if (field === this.sortField) {

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BusinessUnit } from '../models/business-unit.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CommonService {
   }
 
   private loadUsers() {
-    this.http.get<any[]>(this.userBaseUrl).subscribe(users => {
+    this.http.get<User[]>(this.userBaseUrl).subscribe(users => {
       this.usersSubject.next(users);
     });
   }
@@ -27,7 +28,7 @@ export class CommonService {
     return this.http.get<BusinessUnit[]>(this.businessBaseUrl);
   }
 
-  getUsers(): Observable<any[]> {
+  getUsers(): Observable<User[]> {
     return this.usersSubject.asObservable();
   }
 
