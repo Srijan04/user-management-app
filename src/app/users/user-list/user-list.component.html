@@ -1,0 +1,23 @@
+<div class="table-responsive my-2">
+    <table class="table table-bordered">
+      <!-- Table Header -->
+      <thead class="table-light">
+        <tr>
+          <th class="name" (click)="sort('name')">Name {{ sortIcon('name') }}</th>
+          <th class="email">Email</th>
+          <th class="age">Age</th>
+          <th class="bussiness-unit" (click)="sort('businessUnit')">Business Unit {{ sortIcon('businessUnit') }}</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody>
+        <tr *ngFor="let user of usersList">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.dob | ageConverter}}</td>
+          <td>{{ user.businessUnit }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

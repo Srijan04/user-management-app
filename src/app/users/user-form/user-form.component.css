@@ -1,0 +1,12 @@
+::placeholder, .mandatory > span{
+    font-size: 14px;
+    font-weight: 400;
+}
+.is-invalid{
+    color: #dc3545;
+}
+.box{
+    padding: 24px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+}

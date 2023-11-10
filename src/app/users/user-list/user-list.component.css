@@ -1,0 +1,10 @@
+.email{
+    width: 40%;
+}
+.name, .bussiness-unit{
+    width: 25%;
+    cursor: pointer;
+}
+.age{
+    width : 10%
+}

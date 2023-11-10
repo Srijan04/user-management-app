@@ -1,0 +1,53 @@
+<div class="box my-2">
+    <form [formGroup]="userForm" (ngSubmit)="addUser()">
+  
+      <div class="form-group mb-3">
+        <label class="form-label">Name<span class="is-invalid">*</span></label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Name"
+          [ngClass]="{'is-invalid': userFormControls['name'].errors  && userFormControls['name'].touched}" />
+        <div *ngIf="userFormControls['name'].errors  && userFormControls['name'].touched" class="invalid-feedback">
+          <div *ngIf="userFormControls['name'].errors['required']">Name is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group  mb-3">
+        <label class="form-label">E-mail<span class="is-invalid">*</span></label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Email"
+          [ngClass]="{'is-invalid':userFormControls['email'].errors && userFormControls['email'].touched}" />
+        <div *ngIf="userFormControls['email'].errors && userFormControls['email'].touched" class="invalid-feedback">
+          <div *ngIf="userFormControls['email'].errors['required']">Email is required.</div>
+          <div *ngIf="userFormControls['email'].errors['email']">Invalid email address.</div>
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label class="form-label">Date of Birth<span class="is-invalid">*</span></label>
+        <input type="date" class="form-control" formControlName="dob" placeholder="Date of Birth"
+          [ngClass]="{'is-invalid': userFormControls['dob'].errors  && userFormControls['dob'].touched}"  max="2023-11-31" />
+        <div *ngIf=" userFormControls['dob'].errors  && userFormControls['dob'].touched" class="invalid-feedback">
+          <div *ngIf="userFormControls['dob'].errors['required']">Date of Birth is required.</div>
+        </div>
+      </div>
+  
+  
+      <div class="form-group mb-3">
+        <label class="form-label">Business Unit<span class="is-invalid">*</span></label>
+        <select class="form-select" aria-label="Select" formControlName="businessUnit"
+          [ngClass]="{'is-invalid': userFormControls['businessUnit'].errors && userFormControls['businessUnit'].touched}">
+          <option [value]="null" disabled selected>Select Business Unit</option>
+          <option *ngFor="let unit of businessUnits" [ngValue]="unit.id">{{ unit.name }}</option>
+        </select>
+  
+  
+  
+        <div *ngIf=" userFormControls['businessUnit'].errors && userFormControls['businessUnit'].touched"
+          class="invalid-feedback">
+          <div *ngIf="userFormControls['businessUnit'].errors['required'] && userFormControls['businessUnit'].touched">
+            Business Unit is required.</div>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary my-2 me-3" [disabled]="userForm.invalid">Add User</button>
+      <button type="button" class="btn btn-secondary btn-block my-2 me-3" (click)="resetUserForm()">Reset Form</button>
+    </form>
+  </div>
